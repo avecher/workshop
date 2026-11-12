@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>// мастерская нарративной режиссуры</title>
+<meta name="description" content="черновик. совместная работа над смыслами.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fdfcf9;
+    --paper: #ffffff;
+    --ink: #141414;
+    --ink-soft: #3a3a3a;
+    --muted: #8a8a8a;
+    --red: #b0302a;
+    --line: #d9d5cc;
+    --highlight: #fff4b8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 16px;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      repeating-linear-gradient(transparent, transparent 31px, rgba(0,0,0,0.03) 31px, rgba(0,0,0,0.03) 32px);
+  }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 48px 32px 96px;
+    position: relative;
+  }
+
+  /* ——— шапка ——— */
+  header {
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 24px;
+    margin-bottom: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: lowercase;
+  }
+
+  .logo .slash { color: var(--red); }
+
+  nav {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  nav a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    margin-left: 20px;
+    border-bottom: 1px dotted var(--muted);
+    padding-bottom: 2px;
+    transition: color 0.15s;
+  }
+
+  nav a:hover { color: var(--red); border-color: var(--red); }
+
+  /* ——— секции ——— */
+  section {
+    margin-bottom: 120px;
+    position: relative;
+  }
+
+  .section-mark {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--red);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  h1 {
+    font-family: 'Space Mono', monospace;
+    font-size: 38px;
+    line-height: 1.25;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 32px;
+  }
+
+  h2 {
+    font-family: 'Space Mono', monospace;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 32px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--line);
+  }
+
+  h3 {
+    font-family: 'Space Mono', monospace;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+
+  p { margin-bottom: 18px; }
+
+  .lead {
+    font-size: 18px;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+    border-left: 2px solid var(--red);
+    padding-left: 20px;
+  }
+
+  /* ——— перечёркивания и правки ——— */
+  del {
+    color: var(--muted);
+    text-decoration: line-through;
+    text-decoration-color: var(--red);
+    text-decoration-thickness: 1.5px;
+  }
+
+  .cut {
+    position: relative;
+    color: var(--muted);
+    text-decoration: line-through;
+    text-decoration-color: var(--red);
+    text-decoration-thickness: 1.5px;
+  }
+
+  .arrow { color: var(--red); margin: 0 6px; font-weight: 700; }
+
+  .trail {
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .blink {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background: var(--ink);
+    margin-left: 2px;
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  /* ——— ремарки на полях ——— */
+  .note {
+    font-family: 'Caveat', cursive;
+    color: var(--red);
+    font-size: 20px;
+    line-height: 1.3;
+    display: block;
+    margin: 12px 0;
+    padding-left: 8px;
+  }
+
+  .note::before {
+    content: "※ ";
+    color: var(--red);
+  }
+
+  .margin-note {
+    position: absolute;
+    right: -180px;
+    top: 0;
+    width: 160px;
+    font-family: 'Caveat', cursive;
+    color: var(--red);
+    font-size: 18px;
+    line-height: 1.2;
+    transform: rotate(-2deg);
+  }
+
+  /* ——— блоки принципов ——— */
+  .principles { margin-top: 40px; }
+
+  .principle {
+    margin-bottom: 40px;
+    padding: 24px 28px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--ink);
+    position: relative;
+  }
+
+  .principle::before {
+    content: attr(data-mark);
+    position: absolute;
+    top: -10px;
+    left: 16px;
+    background: var(--bg);
+    padding: 0 8px;
+    font-size: 11px;
+    color: var(--red);
+    letter-spacing: 0.15em;
+    font-family: 'Space Mono', monospace;
+  }
+
+  .principle strong {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+
+  /* ——— шаги процесса ——— */
+  .steps { margin-top: 40px; }
+
+  .step {
+    margin-bottom: 48px;
+    padding-left: 48px;
+    position: relative;
+  }
+
+  .step::before {
+    content: attr(data-num);
+    position: absolute;
+    left: 0;
+    top: -4px;
+    font-family: 'Space Mono', monospace;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--red);
+    line-height: 1;
+  }
+
+  .step strong {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+
+  /* ——— зоны работы ——— */
+  .areas { margin-top: 40px; }
+
+  .area {
+    margin-bottom: 36px;
+    padding: 20px 24px;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .area strong {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+
+  .area strong::before {
+    content: "→ ";
+    color: var(--red);
+  }
+
+  /* ——— истории ——— */
+  .stories { margin-top: 40px; }
+
+  .story {
+    margin-bottom: 72px;
+    padding: 32px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    position: relative;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.04);
+  }
+
+  .story::before {
+    content: attr(data-scene);
+    position: absolute;
+    top: -12px;
+    left: 24px;
+    background: var(--bg);
+    padding: 0 12px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--red);
+    letter-spacing: 0.2em;
+  }
+
+  .story h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--line);
+  }
+
+  .story .label {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 16px;
+    margin-bottom: 6px;
+  }
+
+  .story .label::before {
+    content: "// ";
+    color: var(--red);
+  }
+
+  .story p {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+
+  .story .result {
+    background: var(--highlight);
+    padding: 12px 16px;
+    margin-top: 12px;
+    border-left: 2px solid var(--red);
+  }
+
+  /* ——— контакт ——— */
+  .contact {
+    text-align: left;
+    padding: 48px 0;
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .contact h2 {
+    border: none;
+    padding: 0;
+    font-size: 32px;
+    margin-bottom: 24px;
+  }
+
+  .contact p {
+    font-size: 17px;
+    max-width: 560px;
+    margin-bottom: 32px;
+  }
+
+  .contact a.button {
+    display: inline-block;
+    padding: 14px 28px;
+    background: var(--ink);
+    color: var(--bg);
+    text-decoration: none;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border: 1px solid var(--ink);
+    transition: all 0.15s;
+  }
+
+  .contact a.button:hover {
+    background: var(--red);
+    border-color: var(--red);
+  }
+
+  .contact a.button::before {
+    content: "→ ";
+  }
+
+  /* ——— подвал ——— */
+  footer {
+    margin-top: 80px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* ——— адаптив ——— */
+  @media (max-width: 900px) {
+    .margin-note { display: none; }
+  }
+
+  @media (max-width: 640px) {
+    .page { padding: 32px 20px 64px; }
+    h1 { font-size: 26px; }
+    h2 { font-size: 20px; }
+    section { margin-bottom: 80px; }
+    header { margin-bottom: 48px; }
+    nav a { margin-left: 0; margin-right: 14px; }
+    .story { padding: 20px; }
+    body { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<header>
+  <div class="logo"><span class="slash">//</span> мастерская нарративной режиссуры</div>
+  <nav>
+    <a href="#philosophy">принципы</a>
+    <a href="#process">процесс</a>
+    <a href="#areas">задачи</a>
+    <a href="#stories">черновики</a>
+    <a href="#contact">контакт</a>
+  </nav>
+</header>
+
+<!-- ——— ГЛАВНЫЙ ЭКРАН ——— -->
+<section id="hero">
+  <span class="section-mark">§ 00 / исходник</span>
+  <h1>
+    мастерская нарративной<br>
+    режиссуры<span class="blink"></span>
+  </h1>
+  <p class="lead">
+    это не разовая консультация и не формат <del>«сделал — предъявил»</del><span class="arrow">→</span> это воркшоп. мы работаем вместе, как спортсмен с тренером: выходим на поле, тренируемся, сомневаемся и находим честный голос в реальном времени.
+  </p>
+  <p>
+    я работаю как режиссёр: задаю вопросы, держу фокус, помогаю отсечь <del>красивое</del> <span class="arrow">→</span> настоящее. это может занять несколько встреч или растянуться на год <span class="trail">— ровно столько, сколько требует задача...</span>
+  </p>
+  <p>
+    я работаю один. пишу, режиссирую и, если это нужно для сохранения честности замысла, снимаю сам.
+  </p>
+  <span class="note">никаких брифов. никаких презентаций. только разговор.</span>
+</section>
+
+<!-- ——— ФИЛОСОФИЯ ——— -->
+<section id="philosophy">
+  <span class="section-mark">§ 01 / принципы</span>
+  <h2>как я работаю</h2>
+
+  <div class="principles">
+
+    <div class="principle" data-mark="// 01">
+      <strong>принцип «не верю»</strong>
+      я работаю по законам театральной и кинорежиссуры. если в тексте или речи есть фальшь, зритель это мгновенно считает и закроется. мы не боимся показаться обычными, сомневающимися или <del>идеальными</del> <span class="arrow">→</span> живыми. именно в этом живёт доверие.
+    </div>
+
+    <div class="principle" data-mark="// 02">
+      <strong>нарратив — это вселенная в голове слушателя</strong>
+      моя задача не в том, чтобы выдать набор <del>красивых</del> слов. моя задача — выстроить такую драматургию, чтобы в голове у вашей аудитории возникло пространство, в котором им интересно находиться.
+    </div>
+
+    <div class="principle" data-mark="// 03">
+      <strong>коммуникация, а не вещание</strong>
+      как в хорошем кино, где зритель не замечает времени, наша цель — вызвать эмоцию и сопереживание. эмоция <span class="arrow">→</span> это и есть прямая коммуникация.
+    </div>
+
+    <div class="principle" data-mark="// 04">
+      <strong>режиссура под формат</strong>
+      драматургия живого выступления, камерного видео или аудиоформата строится по разным законам. я помогаю найти правильный ключ для каждого из них.
+    </div>
+
+  </div>
+</section>
+
+<!-- ——— ПРОЦЕСС ——— -->
+<section id="process">
+  <span class="section-mark">§ 02 / процесс</span>
+  <h2>как устроен процесс</h2>
+  <p><del>заполняем бриф</del> <span class="arrow">→</span> только живой разговор и совместная работа.</p>
+
+  <div class="steps">
+    <div class="step" data-num="01">
+      <strong>осознание и контакт</strong>
+      вы понимаете, что в коммуникации вашей компании или вашей личной есть фальшь, шум или пустота. вы пишете мне и коротко описываете, что вас беспокоит.
+    </div>
+    <div class="step" data-num="02">
+      <strong>разговор, а не брифинг</strong>
+      мы встречаемся. мы не заполняем таблицы и не смотрим презентации. мы говорим о проблеме, как есть. я слушаю, задаю неудобные вопросы и предлагаю свою режиссёрскую оптику.
+    </div>
+    <div class="step" data-num="03">
+      <strong>работа на поле</strong>
+      если мы понимаем, что нам по пути, мы начинаем работать. я не исчезаю, чтобы <del>«сделать всё сам»</del>. мы собираем тексты, сценарии или стратегии вместе. я направляю, вы вовлекаетесь. мы спорим, сомневаемся и находим живые решения.
+    </div>
+    <div class="step" data-num="04">
+      <strong>результат</strong>
+      вы получаете не просто «сданный проект», а работающий инструмент и, что важнее, понимание того, как им пользоваться и как сохранять этот голос в будущем.
+    </div>
+  </div>
+</section>
+
+<!-- ——— ЗАДАЧИ ——— -->
+<section id="areas">
+  <span class="section-mark">§ 03 / с чем работаем</span>
+  <h2>зоны совместной работы</h2>
+
+  <div class="areas">
+    <div class="area">
+      <strong>голос первых лиц</strong>
+      учимся говорить и писать так, чтобы вам доверяли. снимаем <del>«корпоративную маску»</del>, готовимся к выступлениям или записываем видео, где вы звучите как живой человек, а не как функция.
+    </div>
+    <div class="area">
+      <strong>внутренние смыслы компании</strong>
+      перестаём писать сухие отчёты для сотрудников и начинаем выстраивать честный диалог. разрабатываем сценарии встреч и процессов, где люди чувствуют себя людьми.
+    </div>
+    <div class="area">
+      <strong>продуктовые истории и подкасты</strong>
+      ищем настоящую ценность того, что вы делаете, и упаковываем её в понятный, работающий нарратив без воды. превращаем <del>корпоративный пиар</del> <span class="arrow">→</span> обычный человеческий разговор.
+    </div>
+  </div>
+</section>
+
+<!-- ——— ИСТОРИИ ——— -->
+<section id="stories">
+  <span class="section-mark">§ 04 / черновики сцен</span>
+  <h2>истории из мастерской</h2>
+
+  <div class="stories">
+
+    <div class="story" data-scene="сцена i / конференция">
+      <h3>от парадного отчёта к пути героя</h3>
+
+      <span class="label">ситуация</span>
+      <p>руководитель крупного бизнеса готовился к конференции. его черновик выступления был идеальным, но мёртвым: <del>парадный отчёт с перечислением достижений</del>.</p>
+
+      <span class="label">что мы сделали</span>
+      <p>мы не стали «причёсывать» текст. я попросил его отложить презентацию и просто рассказать мне историю: с какой личной проблемой он столкнулся, почему вообще начал этот продукт создавать и что ему пришлось преодолеть. мы выстроили драматургию пути героя.</p>
+
+      <div class="result">
+        <span class="label">результат</span>
+        <p>на сцене он говорил о себе и своём пути по-человечески, не скрывая сложностей. зал не скучал, а сопереживал. возникла живая коммуникация, а не монолог функции.</p>
+      </div>
+    </div>
+
+    <div class="story" data-scene="сцена ii / соцсети">
+      <h3>разговор, который запустил миллионы просмотров</h3>
+
+      <span class="label">ситуация</span>
+      <p>владелец бизнеса по продаже художественных изделий хотел вести соцсети, но блокировался перед камерой. <em>«я бизнесмен, я не понимаю, о чём мне говорить, это не моё»</em>.</p>
+
+      <span class="label">что мы сделали</span>
+      <p>мы не писали сценарий с модными фразами. я включил камеру и провёл с ним интервью как режиссёр: спросил, как человек с его прагматичным складом ума вообще пришёл к эстетике и где он лично видит в этом красоту. он ответил честно, с сомнением и искренним удивлением от собственных мыслей.</p>
+
+      <div class="result">
+        <span class="label">результат</span>
+        <p>этот ролик улетел в тренды. не потому что мы <del>«взломали алгоритмы»</del>, а потому что зритель почувствовал живого человека, который искренне увлечён своим делом.</p>
+      </div>
+    </div>
+
+    <div class="story" data-scene="сцена iii / подкаст">
+      <h3>превращение корпоративного пиара в настоящий подкаст</h3>
+
+      <span class="label">ситуация</span>
+      <p>технологическая корпорация запускала подкаст, но выпуски получались скучными. это был замаскированный пресс-релиз: ответы на вопросы, удобные пиар-службе, а не слушателю.</p>
+
+      <span class="label">что мы сделали</span>
+      <p>я пришёл к ведущему и экспертам и сказал: давайте применять принцип «не верю!». мы взяли фреймворк jobs to be done и превратили его в драматургию. я заставил экспертов говорить не друг за другом, а друг с другом о реальных болях аудитории и о том, как их решать на самом деле.</p>
+
+      <div class="result">
+        <span class="label">результат</span>
+        <p>получился не «корпоративный подкаст», а обычный, увлекательный человеческий разговор. слушатели начали вовлекаться, потому что мы говорили об их вселенной, а не о нашей.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ——— КОНТАКТ ——— -->
+<section id="contact" class="contact">
+  <span class="section-mark">§ 05 / начало</span>
+  <h2>начнём разговор<span class="blink"></span></h2>
+  <p>
+    этот формат не подходит тем, кто ищет быструю <del>«упаковку»</del> или хочет просто делегировать задачу и забыть о ней.<br><br>
+    но если вы готовы лично участвовать в процессе, не боитесь сомневаться и хотите, чтобы ваш бизнес зазвучал честно <span class="trail">—</span>
+  </p>
+  <a href="mailto:your@email.com" class="button">написать мне</a>
+</section>
+
+<footer>
+  <div>андрей · мастерская нарративной режиссуры</div>
+  <div>// черновик. версия от 12.11.2026</div>
+</footer>
+
+</div>
+
+</body>
+</html>
