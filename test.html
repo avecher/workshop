@@ -1,0 +1,264 @@
+<h1>Памятка по работе с <a href='GitHub.com'>GitHub.com</a> специально для твоего проекта:</h1>
+<hr>
+<blockquote>
+<p><img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' xmlns:v='https://vecta.io/nano'%3e%3cpath d='M5.747 14.38h4.204c.296 0 .557-.033.783-.099a2.03 2.03 0 0 0 .608-.291 3.14 3.14 0 0 0 .516-.465l2.475-2.796c.164-.187.291-.359.379-.516s.15-.325.185-.502a3.46 3.46 0 0 0 .051-.643V6.067a3.46 3.46 0 0 0-.051-.643 1.69 1.69 0 0 0-.185-.506c-.089-.16-.215-.33-.379-.513l-2.475-2.803c-.164-.182-.336-.336-.516-.461s-.383-.222-.608-.291-.486-.103-.783-.103H5.747c-.301 0-.564.034-.79.103s-.428.165-.608.291-.352.279-.516.461L1.365 4.406a3.04 3.04 0 0 0-.383.513c-.091.16-.154.328-.188.506a3.46 3.46 0 0 0-.051.643v3.001a3.46 3.46 0 0 0 .051.643c.034.178.097.345.188.502a3.35 3.35 0 0 0 .383.516l2.468 2.796a3.14 3.14 0 0 0 .516.465 2.03 2.03 0 0 0 .608.291 2.82 2.82 0 0 0 .79.099zm.301-1.49a2.02 2.02 0 0 1-.516-.055 1.03 1.03 0 0 1-.355-.171c-.103-.077-.208-.18-.318-.308L2.705 9.957c-.132-.15-.22-.292-.263-.424s-.065-.326-.065-.581V6.177c0-.251.022-.442.065-.574s.131-.273.263-.424l2.153-2.399c.109-.128.215-.23.318-.308a1.03 1.03 0 0 1 .355-.171 2.02 2.02 0 0 1 .516-.055H9.65c.205 0 .375.018.509.055s.252.093.352.171.21.18.328.308l2.14 2.399c.137.15.227.292.27.424s.065.324.065.574v2.775c0 .255-.022.449-.065.581s-.133.273-.27.424l-2.14 2.399c-.118.128-.228.23-.328.308s-.218.134-.352.171-.304.055-.509.055H6.048zm1.805-4.259c.415 0 .631-.216.649-.649l.103-3.104c.009-.219-.058-.398-.202-.537s-.329-.208-.557-.208-.419.069-.561.208-.207.316-.198.53l.096 3.117c.018.428.242.643.67.643zm0 2.297a.87.87 0 0 0 .595-.215c.164-.144.246-.329.246-.557s-.081-.422-.243-.567a.86.86 0 0 0-.598-.219c-.237 0-.439.074-.605.222a.72.72 0 0 0-.25.564c0 .223.083.408.25.554s.368.219.605.219z' fill='hsla(31%2C%2098%25%2C%2050%25%2C%201)'/%3e%3c/svg%3e"/> Вот логика работы твоей связки без лишней теории:
+</p>
+<h3>1. GitHub — это склад и конвейер</h3><ul>
+<li><b>Хранилище:</b> Все твои файлы (тексты, стили, настройки) лежат в репозитории <code>weblog</code>. Это единственное место правды.</li>
+<li><b>Сборщик (Jekyll):</b> Когда ты делаешь коммит, GitHub автоматически запускает Jekyll. Он берет Markdown-файлы из <code>_posts</code>, подставляет их в шаблон <code>_layouts/default.html</code>, применяет стили из <code>style.css</code> и генерирует готовые HTML-страницы.</li>
+<li><b>Публикация:</b> Готовые HTML-файлы выкладываются на сервер по адресу <code>avecher.github.io/weblog/</code>. Ты никогда не загружаешь HTML вручную — только исходники.</li>
+</ul>
+<h3>2. VS Code (<a href='github.dev'>github.dev</a>) — это пульт управления</h3><ul>
+<li><b>Редактор, а не хостинг:</b> Он не собирает сайт и не публикует его. Он только меняет файлы на складе (GitHub).</li>
+<li><b>Структура:</b> Показывает реальное дерево папок (<code>_posts</code>, <code>_layouts</code>). Ты видишь, где создаешь файл, и не можешь ошибиться с путем.</li>
+<li><b>Предпросмотр:</b> Позволяет увидеть форматирование Markdown до коммита. Но это <i>только</i> превью текста, а не работающий сайт.</li>
+<li><b>Git-клиент:</b> Управляет версиями. Кнопка «Commit & Push» отправляет изменения на склад и триггерит сборку.</li>
+</ul>
+<h3>3. Связь между ними</h3><ol>
+<li>Ты пишешь текст в VS Code → нажимаешь Commit & Push.</li>
+<li>Файл улетает на GitHub.</li>
+<li>GitHub видит изменение → запускает Jekyll → пересобирает весь сайт.</li>
+<li>Через 2–3 минуты новая версия появляется по ссылке.</li>
+</ol>
+<p><b>Ключевое правило:</b> VS Code создает <i>исходный код</i>. GitHub превращает его в <i>сайт</i>. Между ними нет прямой связи «нажал кнопку — увидел результат». Всегда есть этап сборки на стороне GitHub.</p>
+</blockquote>
+
+<hr>
+
+<h3>1. Как создать новую запись (всегда делай так)</h3><ol>
+<li>Зайди в репозиторий <code>weblog</code>.</li>
+<li>Кликни на папку <b><code>_posts</code></b> (с нижним подчёркиванием). Убедись, что ты <i>внутри</i> неё (вверху написано <code>weblog / _posts</code>).</li>
+<li>Нажми кнопку <b>Add file</b> → <b>Create new file</b>.</li>
+<li>В поле имени пиши <b>ТОЛЬКО дату и название</b>: <code>2026-11-15-novaya-zapis.md</code>.
+<ul>
+<li>⛔ <b>НЕ пиши</b> <code>_posts/</code> в начале. Ты уже внутри папки.</li>
+<li>✅ Пиши просто имя файла.</li>
+</ul>
+</li>
+<li>Вставь текст записи.</li>
+<li>Нажми <b>Commit changes</b>.</li>
+</ol>
+<h3>2. Что такое нижнее подчёркивание <code>_</code></h3><ul>
+<li>Папки <code>_posts</code>, <code>_layouts</code> — это <b>служебные папки Jekyll</b>. Они не становятся страницами сайта. Это «кухня».</li>
+<li>Файлы без подчёркивания (<code>index.html</code>, <code>style.css</code>) — это <b>страницы сайта</b>. Это «витрина».</li>
+<li>Никогда не называй свои посты или страницы с подчёркиванием в начале, если не знаешь точно зачем.</li>
+</ul>
+<h3>3. Если случайно создал файл не там</h3><p>Не пытайся переименовать через редактор — поле заблокировано.</p><ol>
+<li>Скопируй текст файла.</li>
+<li>Отмени редактирование (<b>Cancel</b>).</li>
+<li>Перейди в правильную папку.</li>
+<li>Создай новый файл с тем же именем (без префикса пути).</li>
+<li>Вставь текст. Закоммить.</li>
+<li>Удали старый файл из неправильной папки.</li>
+</ol>
+<h3>4. Медиа (аудио/видео)</h3><ul>
+<li>Не загружай файлы больше 100 МБ прямо в папку <code>_posts</code>.</li>
+<li>Для аудио/видео используй <b>GitHub Releases</b> (раздел Releases справа в репозитории) или ссылки на ВК.</li>
+<li>Вставляй плееры через HTML-теги <code>&lt;audio&gt;</code> и <code>&lt;video&gt;</code> прямо в текст записи.</li>
+</ul>
+<h3>5. Проверка перед коммитом</h3><p>Перед тем как нажать «Commit changes», всегда смотри на хлебные крошки вверху:</p><ul>
+<li>Должно быть: <code>weblog / _posts / [имя-файла].md</code></li>
+<li>Если видишь: <code>weblog / _posts / _posts / ...</code> — ты ошибся, отменяй и начинай заново.</li>
+</ul>
+<p>Эта памятка — твой чеклист. Сохрани её себе. Каждый раз, когда садишься писать новую запись, открывай её и следуй пунктам. Через 3–4 записи руки запомнят, и инструкция станет не нужна.</p>
+<hr>
+
+
+<p>Вот полная последовательная инструкция для развёртывания проекта «Хроника проекта» с нуля. Все файлы даны целиком, без дополнений и правок по ходу.</p>
+<h3>Шаг 1. Создание репозитория</h3><ol>
+<li>Зайди на <a href='github.com'>github.com</a> → New repository.</li>
+<li>Имя: <code>weblog</code>.</li>
+<li>Поставь галочку <b>Public</b>.</li>
+<li>Нажми <b>Create repository</b>.</li>
+</ol>
+<h3>Шаг 2. Файл <code>_config.yml</code> (создать в корне)</h3><pre><code>title: Хроника проекта
+baseurl: /weblog
+markdown: kramdown
+permalink: /:year/:month/:day/:title/
+</code></pre>
+<h3>Шаг 3. Файл <code>style.css</code> (создать в корне)</h3><pre><code>body {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 
+                 "Liberation Mono", "Courier New", monospace;
+    font-size: 15px;
+    max-width: 680px;
+    margin: 40px auto;
+    padding: 0 20px;
+    background: #f6f8fa;
+    color: #24292e;
+    line-height: 1.6;
+}
+h1 a {
+    color: #24292e;
+    text-decoration: none;
+    border-bottom: 2px solid #d0d7de;
+    padding-bottom: 4px;
+}
+article {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px dashed #d0d7de;
+}
+time {
+    color: #8c959f;
+    font-size: 0.85em;
+    display: block;
+    margin-bottom: 4px;
+}
+h2 a {
+    color: #0969da;
+    text-decoration: none;
+    font-weight: normal;
+}
+h2 a:hover {
+    text-decoration: underline;
+}
+strike, del {
+    text-decoration: line-through;
+    color: #8250df;
+    background: #fff8c5;
+    padding: 0 3px;
+    border-radius: 2px;
+}
+p {
+    margin: 0.8em 0;
+}
+audio, video {
+    width: 100%;
+    margin-top: 10px;
+}
+</code></pre>
+<h3>Шаг 4. Папка <code>_layouts</code> и файл <code>default.html</code></h3><ol>
+<li>Создай папку <code>_layouts</code> (Add file → Create new file → <code>_layouts/.gitkeep</code> → Commit).</li>
+<li>Удали <code>.gitkeep</code>.</li>
+<li>Создай файл <code>_layouts/default.html</code>:</li>
+</ol><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;{{ page.title }}&lt;/title&gt;
+    &lt;link rel="stylesheet" href="{{ site.baseurl }}/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header style="margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid #d0d7de;"&gt;
+        &lt;a href="{{ site.baseurl }}/" style="font-family: ui-monospace, SFMono-Regular, monospace; color: #24292e; text-decoration: none; font-size: 1.1em; font-weight: bold;"&gt;
+            ← Хроника проекта
+        &lt;/a&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;h1 style="font-size: 1.8em; margin-bottom: 24px; font-weight: normal; color: #24292e;"&gt;{{ page.title }}&lt;/h1&gt;
+        {{ content }}
+    &lt;/main&gt;
+    
+    &lt;footer style="margin-top: 60px; padding-top: 20px; border-top: 1px dashed #d0d7de; display: flex; justify-content: space-between; align-items: baseline; color: #8c959f; font-size: 0.85em;"&gt;
+        &lt;span style="font-family: ui-monospace, SFMono-Regular, monospace; opacity: 0.7;"&gt;= черновики проектов&lt;/span&gt;
+        &lt;span&gt;©Андрей Вечер 2026&lt;/span&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3>Шаг 5. Папка <code>_posts</code> и первая запись</h3><ol>
+<li>Создай папку <code>_posts</code>.</li>
+<li>Внутри создай файл <code>2026-11-14-start.md</code>:</li>
+</ol><pre><code>---
+layout: default
+title: Старт хроники
+date: 2026-11-14
+---
+
+Первая запись. ~~Ничего не понятно~~ Всё по плану.
+</code></pre>
+<h3>Шаг 6. Файл <code>index.html</code> (создать в корне)</h3><pre><code>---
+layout: default
+---
+
+&lt;h1&gt;&lt;a href="{{ site.baseurl }}/"&gt;Хроника проекта&lt;/a&gt;&lt;/h1&gt;
+
+{% for post in site.posts %}
+&lt;article&gt;
+  &lt;time&gt;{{ post.date | date: "%Y-%m-%d" }}&lt;/time&gt;
+  &lt;h2&gt;&lt;a href="{{ site.baseurl }}{{ post.url }}"&gt;{{ post.title }}&lt;/a&gt;&lt;/h2&gt;
+  {{ post.excerpt }}
+&lt;/article&gt;
+{% endfor %}
+</code></pre>
+<h3>Шаг 7. Включение GitHub Pages</h3><ol>
+<li>Settings → Pages.</li>
+<li>Source: <b>Deploy from a branch</b>.</li>
+<li>Branch: <b>main</b>, Folder: <b>/(root)</b>.</li>
+<li>Save.</li>
+<li>Подожди 3–5 минут до появления зелёной ссылки.</li>
+</ol>
+<h3>Шаг 8. Проверка</h3><p>Открой <code>https://avecher.github.io/weblog/</code>. Главная страница должна отображаться со списком постов. Клик по заголовку поста должен открывать страницу с заголовком, текстом, навигацией «← Хроника проекта» и футером.</p>
+<p><b>Памятка для создания следующих записей:</b></p><ul>
+<li>Всегда создавай файлы внутри папки <code>_posts</code> (кликни на неё → Add file → Create new file).</li>
+<li>Имя файла: <code>ГГГГ-ММ-ДД-название.md</code> (без префикса <code>_posts/</code>).</li>
+<li>Обязательный фронтматер в начале каждого файла:<pre><code>---
+layout: default
+title: Заголовок записи
+date: ГГГГ-ММ-ДД
+---
+</code></pre></li>
+<li>Для медиа используй прямые ссылки или GitHub Releases. Теги <code>&lt;audio&gt;</code> и <code>&lt;video&gt;</code> вставляются в текст как HTML.</li>
+</ul><hr>
+
+
+<p>Вот обновлённая инструкция с добавлением тестовых записей для аудио и видео. Они включены в процесс сразу, чтобы проверить работу медиа-плееров и стилей.</p>
+<h3>Шаг 5 (обновлённый). Папка <code>_posts</code> и три первые записи</h3>
+<p>Создай папку <code>_posts</code>. Внутри неё создай <b>три</b> файла по очереди:</p>
+<h4>Файл 1: <code>2026-11-14-start.md</code></h4><pre><code>---
+layout: default
+title: Старт хроники
+date: 2026-11-14
+---
+
+Первая запись. ~~Ничего не понятно~~ Всё по плану.
+</code></pre>
+<h4>Файл 2: <code>2026-11-13-audio-zametka.md</code></h4><pre><code>---
+layout: default
+title: Аудиозаметка о деревянности
+date: 2026-11-13
+---
+
+Записал голосовую заметку сразу после прочтения старого текста про интерпретацию.
+
+~~Хотел сделать из этого полноценный пост~~
+Но решил оставить как сырой звук. Это честнее.
+
+&lt;audio controls preload="metadata" style="width: 100%; margin-top: 10px;"&gt;
+  &lt;source src="https://github.com/avecher/weblog/releases/download/v1/audio-note-01.mp3" type="audio/mpeg"&gt;
+  Ваш браузер не поддерживает аудио.
+&lt;/audio&gt;
+
+[Послушать оригинал в ВК](https://vk.com/)
+</code></pre>
+<h4>Файл 3: <code>2026-11-12-video-draft.md</code></h4><pre><code>---
+layout: default
+title: Черновой монтаж эпизода 1
+date: 2026-11-12
+---
+
+Собрал черновую нарезку для первого эпизода.
+Здесь видно, как работает зачёркивание в динамике.
+
+&lt;video controls preload="metadata" width="100%" style="margin-top: 10px;"&gt;
+  &lt;source src="https://github.com/avecher/weblog/releases/download/v1/video-draft-01.mp4" type="video/mp4"&gt;
+  Ваш браузер не поддерживает видео.
+&lt;/video&gt;
+
+~~Убрать кадр с Карабасом~~
+Оставить только момент с ключиком.
+
+[Смотреть полную версию в ВК](https://vk.com/)
+</code></pre>
+<blockquote>
+<p><b>Важно:</b> Ссылки на аудио и видео сейчас ведут на заглушки в GitHub Releases. Если файлов там нет, плееры будут пустыми. Для теста можно временно заменить <code>src</code> на любую публичную ссылку на mp3/mp4 файл, или удалить теги <code>&lt;audio&gt;</code>/<code>&lt;video&gt;</code> до загрузки реальных файлов. Главное — проверить, что стили (<code>width: 100%</code>, отступы) применяются корректно.</p>
+</blockquote>
+<h3>Остальные шаги (без изменений)</h3>
+<p>Шаги 1–4, 6–8 остаются точно такими же, как в предыдущей инструкции. Единственное отличие — после шага 7 ты увидишь на главной странице три записи вместо одной, а при клике на «Аудиозаметка» и «Черновой монтаж» откроются страницы с рабочими плеерами.</p>
+<p>Эта последовательность проверяет всю систему целиком: навигацию, стили, даты, заголовки, медиа и ссылки. Никаких промежуточных состояний.</p>
+<hr>
+
+
+
+<p></p>
